@@ -1,0 +1,27 @@
+{
+  "name": "fa-dynamic.macro",
+  "version": "1.0.0",
+  "description": "This Macro wil automatically import fontawesome icon",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "babel src --out-dir lib --copy-files"
+  },
+  "keywords": [
+    "babel",
+    "babel-plugin",
+    "dynamic icon",
+    "babel-plugin-macros",
+    "font awesome dynamic"
+  ],
+  "author": "MD Abul Hossain",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.23.4",
+    "@babel/core": "^7.23.6",
+    "@babel/preset-env": "^7.23.6",
+    "babel-plugin-macros": "^3.1.0"
+  }
+}
