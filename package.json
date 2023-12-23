@@ -1,6 +1,6 @@
 {
   "name": "fa-dynamic.macro",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This Macro wil automatically import fontawesome icon",
   "main": "lib/index.js",
   "files": [
