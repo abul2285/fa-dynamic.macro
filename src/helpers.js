@@ -122,15 +122,12 @@ const generateModuleScript = ({ iconList, license = 'free' }) => {
 			`;
 };
 
-const generateIconModule = ({ root, path: relativePath, pattern, license }) => {
+const generateIconModule = ({ root, path: relativePath, matcher, license }) => {
   const directoryPath = path.join(root, relativePath);
-  let iconRegexPattern = /['"]fa[srbtld]['"], *["'](?:\w-?)+["']/gim;
+  const iconMatchPattern =
+    matcher || /['"]fa(?:s|r|b|t|l|d)['"],\s*["'](?:[a-z0-9]-?)+["']/gm;
 
-  if (pattern) {
-    iconRegexPattern = new RegExp(pattern, 'gim');
-  }
-
-  const iconList = scanIcons(directoryPath, { match: iconRegexPattern });
+  const iconList = scanIcons(directoryPath, { match: iconMatchPattern });
   const scripts = generateModuleScript({ iconList, license });
 
   return scripts;
