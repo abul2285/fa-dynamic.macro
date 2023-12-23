@@ -8,7 +8,9 @@
     - [Free Icons Styles](#free-icons-styles)
     - [Pro Icons Styles](#pro-icons-styles)
   - [Usage](#usage)
-  - [Configuration Options](#configuration-options)
+    - [Babel Plugin Macros Config](#babel-plugin-macros-config)
+    - [Use Macro](#use-macro)
+    - [Use Font Awesome Icon](#use-font-awesome-icon)
   - [Contact Information](#contact-information)
 
 ## Babel Macro for Dynamic Font Awesome Icon Import
@@ -62,7 +64,29 @@ npm i --save @fortawesome/sharp-light-svg-icons
 npm i --save @fortawesome/sharp-thin-svg-icons
 ```
 
-## Usage
+### Usage
+
+#### Babel Plugin Macros Config
+
+Create a `babel-plugin-macros.config.js` file in your project root and configure the `fa-dynamic` settings. The configuration includes the following options:
+
+- `path` (required): The relative path to the directory containing the icons.
+- `license` (optional): You can set the license to either `free` or `pro` depending on the icons you are planning to use. The free version will be used by default.
+- `matcher` (optional): This regex pattern will be used to match the icon. The default pattern will match `"far", "times"`, `'far', 'chevron-left'` patterns.
+
+```js
+// babel-plugin-macros.config.js
+
+module.exports = {
+  'fa-dynamic': {
+    path: './src',
+    license: 'pro',
+    matcher: /['"]fa(?:s|r|b|t|l|d)['"],\s*["'](?:[a-z0-9]-?)+["']/gm,
+  },
+};
+```
+
+#### Use Macro
 
 ```js
 // index.js
@@ -70,10 +94,7 @@ npm i --save @fortawesome/sharp-thin-svg-icons
 import importFaIcons from 'fa-dynamic.macro';
 import App from './App';
 
-importFaIcons({
-  path: 'src',
-  license: 'pro',
-});
+importFaIcons();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -82,6 +103,8 @@ root.render(
   </React.StrictMode>
 );
 ```
+
+#### Use Font Awesome Icon
 
 ```js
 // App.js
@@ -103,13 +126,6 @@ export default App;
 ```
 
 In this example, all icons inside the `src` directory will be automatically loaded, eliminating the need for manual importation. The license option determines whether to import icons from the free or pro version of Font Awesome.
-
-## Configuration Options
-
-The macro accepts the following configuration options:
-
-- path `(required)`: The relative path to the directory containing the icons.
-- license `(optional)`: The Font Awesome license to use. Available options are 'free' and 'pro'. If not provided, the free version will be used by default.
 
 ## Contact Information
 
